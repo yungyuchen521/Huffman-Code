@@ -32,21 +32,23 @@ HuffmanTree::HuffmanTree():
 root(NULL)
 {}
 
+// construct the tree with the priority queue (MinHeap)
 HuffmanTree::HuffmanTree(MinHeap &nodes):
 root(NULL)
 {
-    // the file is empty
+    // handle the exception which the file is empty
     if (nodes.empty()) {
         root = new Node(0, '\0', NULL, NULL);
     }
     
-    // the file consists of only 1 different character
+    // handle the exception which the file consists of only 1 different character
     else if (nodes.getSize() == 1) {
         Node *node = nodes.extractMin();
         root = new Node(node->freq, '\0', node, NULL);
     }
     
-    // the file consists of more than 1 different character
+    // in normal circumstances
+    // the file consists of more than 1 different characters
     else {
         while (!nodes.empty()) {
             Node *n1, *n2;
@@ -63,6 +65,7 @@ root(NULL)
     }
 }
 
+// the pre-order and post-order traversal can determine an unique binary tree
 void HuffmanTree::printTree() const {
     if (root == NULL)
         return;
@@ -87,6 +90,7 @@ void HuffmanTree::printPostOrder(Node *node) const {
     cout << node;
 }
 
+// generates the Huffman codes for all characters
 unordered_map<char, char*> HuffmanTree::getCodes() const {
     char *code = new char[300];
     code[0] = '\0';
@@ -97,6 +101,7 @@ unordered_map<char, char*> HuffmanTree::getCodes() const {
     return table;
 }
 
+// travel all nodes in the tree to get Huffman code of each
 void HuffmanTree::getCodes(Node *node, char *code, unordered_map<char, char*> &table) const {
     if (!node->left && !node->right)
         table[node->key] = code;
@@ -137,6 +142,7 @@ void HuffmanTree::decode(FILE *file, FILE *decomp, int bitLen) {
         for (int i = 0; i < 8 && bitCount < bitLen; i++, bitCount++) {
             node = (code[i] == '0') ? node->left : node->right;
             
+            // we've arrived at a leaf, so a character is identified
             if (!node->left && !node->right) {
                 fprintf(decomp, "%c", node->key);
                 node = root;
@@ -145,10 +151,14 @@ void HuffmanTree::decode(FILE *file, FILE *decomp, int bitLen) {
     }
 }
 
+// an utility function to convert the int value of a character
+// to a binary number (as an array of characters)
 char* HuffmanTree::charToBinary(char c) {
     char *binary = new char[9];
-    int bin = (int)c;
-    if (bin < 0) bin += 256;
+    int bin = (int)c;           // the int value of char in C++ is within [-128, 127]
+    if (bin < 0) bin += 256;    // those greater than 127 overflows and start from -128
+                                // exmaple: (char)128 -> -128, (char)129 -> -127, (char)255 -> -1, (char)254 -> -2 ... 
+                                // but we want: (char)128 -> 128, (char)129 -> 129, (char)255 -> 255, (char)254 -> 254 ... 
     
     for (int i = 0; i < 8; i++) {
         int p = pow(2, 8 - i - 1);
