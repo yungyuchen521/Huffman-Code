@@ -8,10 +8,10 @@
 using namespace std;
 
 void decompress(char*);
-char* getDecompName(char*, char*);
-char *readStr(FILE*);
-Node* readNode(FILE*);
-HuffmanTree& buildTree(FILE*);
+char* getDecompName(char*, char*); // generate the file name of the decompressed file from the given file name and type
+char *readStr(FILE*); // read the header of the compressed file
+Node* readNode(FILE*); // read the header of the compressed file
+HuffmanTree& buildTree(FILE*); // rebuild the tree with the info provided in the header of the compressed file
 
 void decompress(char *fileName) {
     FILE *file = fopen(fileName, "r");
