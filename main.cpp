@@ -10,11 +10,12 @@ bool compareFiles(char*, char*); // test if the original and the decompressed fi
 int main(int argc, const char * argv[]) {
     char fileName[] = "test.txt"; // set the name of file to be compressed
     
+    // compress.h
     compress(fileName);
-    
     char *compName = getCompName(fileName);
-    decompress(compName);
     
+    // decompress.h
+    decompress(compName);
     char *decompName = getDecompName(compName, getFileType(fileName));
     
     compareFiles(fileName, decompName);
