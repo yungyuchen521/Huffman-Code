@@ -8,14 +8,19 @@
 #include "Huffman Tree.h"
 using namespace std;
 
-#define SEPARATOR 255
+#define SEPARATOR 255 // a special character (ˇ) rarely used to serve as the separator in the header of the compressed file ( for better readabilty )
 
 void compress(char*);
-char* getFileType(char*);
-char* getCompName(char*);
-unordered_map<char, int> getFreqTable(FILE*);
-unordered_map<char, char*> getCodeTable(unordered_map<char, int>&);
-void fprintHeader(FILE*, char*, int, unordered_map<char, int>&);
+
+char* getFileType(char*); // get the file type from the given file name
+char* getCompName(char*); // generate the file name for the compressed file ( {file name}.compressed )
+
+unordered_map<char, int> getFreqTable(FILE*); // read the original file and count the occurrence of each unique character
+unordered_map<char, char*> getCodeTable(unordered_map<char, int>&); // get the Huffman code of each character
+
+void fprintHeader(FILE*, char*, int, unordered_map<char, int>&); 
+// {file type}ˇ{ file length in bit (excluding the header) }ˇ{ char1 }ˇ{ occurrence1 }ˇ{ char2 }ˇ{ occurrence2 }ˇ{ char3 }ˇ{ occurrence3 }ˇ...ˇˇ
+
 void fprintCompressedFile(FILE*, FILE*, unordered_map<char, char*>&);
 char getCompressedChar(queue<char>&);
 
