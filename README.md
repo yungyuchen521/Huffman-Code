@@ -1,7 +1,7 @@
 # Huffman-Code
 
 ## Compression
-1. ###Read the given file and count the occurrence of each unique characters.
+1. ### Read the given file and count the occurrence of each unique characters.
 
 2. Build the Huffman Tree with C++ built in priority queue.
 
