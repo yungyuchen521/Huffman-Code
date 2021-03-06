@@ -1,1 +1,5 @@
 # Huffman-Code
+
+## Compression
+
+## Decompression
