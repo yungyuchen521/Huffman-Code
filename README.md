@@ -6,7 +6,10 @@
 ### 2. Build the Huffman Tree with C++ built in priority queue.
 
 ### 3. Export the header of to the compressed file.
-the header
+The header is composed of:
+1. The type of the original file
+2. The length (in terms of bits) of the compressed content.
+3. Each uniqe characters and their occurence in the original file.
 
 ### 4. Export the compressed content to the compressed file.
 
