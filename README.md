@@ -3,7 +3,7 @@
 ## Compression
 ### 1. Read the given file and count the occurrence of each unique characters.
 ### 2. Build the Huffman Tree with C++ built in priority queue.
-### 3. Export the header of to the compressed file.
+### 3. Export the header to the compressed file. ( for future decompression )
 The header is composed of:
 1. The type of the original file.
 2. The length (in terms of bits) of the compressed content.
