@@ -12,7 +12,8 @@ The header is composed of:
 3. Each uniqe characters and their occurence in the original file.
 
 ### 4. Export the compressed content to the compressed file.
-
+Translate the characters in the original file into Huffman Code
+-> Output the code eight by eight
 ---
 
 ## Decompression
