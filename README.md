@@ -6,7 +6,8 @@
 2. Build the Huffman Tree with C++ built in priority queue.
 
 3. Export the header of to the compressed file.
-the header
+
+  the header
 
 4. Export the compressed content to the compressed file.
 
