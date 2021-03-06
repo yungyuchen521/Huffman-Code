@@ -12,10 +12,10 @@ using namespace std;
 class HuffmanTree {
 public:
     HuffmanTree();
-    HuffmanTree(priority_queue<Node*, vector<Node*>, Comparison>&);
+    HuffmanTree(priority_queue<Node*, vector<Node*>, Comparison>&); // build the tree with priority queue
     
-    unordered_map<char, char*> getCodes() const;
-    void decode(FILE*, FILE*, int);
+    unordered_map<char, char*> getCodes() const; // traverse the tree to the get the Huffman codes of each character (for compression)
+    void decode(FILE*, FILE*, int); // traverse the tree to translate the decompressed codes to characters (for decompression)
     void printTree() const;
 
 private:
